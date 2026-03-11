@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Button b;
+    int contador = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
         getString(R.string.app_name);
         b = findViewById(R.id.button);
         b.setOnClickListener(v -> {
-            b.setText("bla");
+            contador++;
+            b.setText(String.valueOf(contador));
+
         });
     }
 }

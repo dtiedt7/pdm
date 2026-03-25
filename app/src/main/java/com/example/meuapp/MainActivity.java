@@ -3,6 +3,7 @@ package com.example.meuapp;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,41 +13,32 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button b;
-    TextView tv;
-    EditText edmin,edmax;
+    Button btnAvancar, btnVoltar;
+    ImageView imageView;
+    Integer images[] = new Integer[]{
+            R.drawable.cachorro,
+            R.drawable.gardem,
+            R.drawable.happy,
+            R.drawable.patinho,
+            R.drawable.porquinho
+    };
+    int posicao = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        getString(R.string.app_name);
-        b = findViewById(R.id.button);
-        tv = findViewById(R.id.textView);
-        edmin = findViewById(R.id.edMin);
-        edmax = findViewById(R.id.edMax);
 
-        b.setOnClickListener(v -> {
-            String minStr= edmin.getText().toString();
-            String maxStr= edmax.getText().toString();
-            if (minStr.isEmpty()){
-                edmin.setError("Informe o valor mínimo.");
-                edmin.requestFocus();
-                return;
-            }
-            if (maxStr.isEmpty()){
-                edmax.setError("Informe o valor Máximo.");
-                edmax.requestFocus();
-                return;
-            }
+        btnAvancar=findViewById(R.id.buttonAvancar);
+        btnVoltar=findViewById(R.id.buttonVoltar);
+        imageView=findViewById(R.id.imageView);
 
-            int min= Integer.parseInt(minStr);
-            int max= Integer.parseInt(maxStr);
+        btnAvancar.setOnClickListener(v -> {
 
-            Random random = new Random();
-            int r = random.nextInt(min, max);
-            tv.setText(Integer.toString(r));
+            imageView.setImageResource(images[posicao]);
+
         });
+
     }
 }

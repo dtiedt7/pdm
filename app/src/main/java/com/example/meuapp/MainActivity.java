@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnAvancar, btnVoltar;
     ImageView imageView;
-    Integer images[] = new Integer[]{
+    Integer imagens[] = new Integer[]{
             R.drawable.cachorro,
             R.drawable.gardem,
             R.drawable.happy,
@@ -33,11 +33,23 @@ public class MainActivity extends AppCompatActivity {
         btnAvancar=findViewById(R.id.buttonAvancar);
         btnVoltar=findViewById(R.id.buttonVoltar);
         imageView=findViewById(R.id.imageView);
+        imageView.setImageResource(imagens[posicao]);
 
         btnAvancar.setOnClickListener(v -> {
+            if (posicao == imagens.length-1){
+                posicao =-1;
+            }
+            posicao++;
+            imageView.setImageResource(imagens[posicao]);
 
-            imageView.setImageResource(images[posicao]);
+        });
 
+        btnVoltar.setOnClickListener(v -> {
+            if (posicao <= 0){
+                posicao = imagens.length;
+            }
+            posicao--;
+            imageView.setImageResource(imagens[posicao]);
         });
 
     }

@@ -1,21 +1,37 @@
 package com.example.meuapp;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button b;
+    EditText editText;
+
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         getString(R.string.app_name);
+
+        editText = findViewById(R.id.edMsg);
+
+        b = findViewById(R.id.button);
+        b.setOnClickListener(v ->{
+            Intent i = new Intent(getApplicationContext(), ActivityB.class);
+            startActivity(i);
+            String msg = editText.getText().toString();
+            i.putExtra("msg", msg);
+            startActivity(i);
+        });
+
     }
 }
